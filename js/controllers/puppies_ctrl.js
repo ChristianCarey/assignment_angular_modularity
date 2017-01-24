@@ -3,13 +3,36 @@ PuppiesAPI.controller('PuppiesCtrl', ['$scope', 'puppies', 'breeds',
     $scope.puppies = [];
     $scope.breeds = [];
 
-    puppies.sendGetRequest().then(function(response) {
-      console.log(response.data); 
-      angular.copy(response.data, $scope.puppies);
-    });
+    var getPuppies = function() {
+      puppies.sendGetRequest().then(function(response) {
+        angular.copy(response.data, $scope.puppies);
+      });
+    }
 
-     breeds.sendGetRequest().then(function(response) {
-      angular.copy(response.data, $scope.breeds);
-    });
+    var getBreeds = function() {
+      breeds.sendGetRequest().then(function(response) {
+        angular.copy(response.data, $scope.breeds);
+      });
+    }
+
+    $scope.destroyPuppy = function(id) {
+      puppies.sendDeleteRequest(id).then(getPuppies);
+    }
+
+    $scope.addPuppy = function(form) {
+      if (!form.$valid) {
+        return;
+      }
+
+      var data = {
+        name: $scope.formData.name,
+        breed_id: $scope.formData.breedID
+      }
+
+      puppies.sendPostRequest(data).then(getPuppies); 
+    }
+
+    getPuppies();
+    getBreeds();
   }
 ]);

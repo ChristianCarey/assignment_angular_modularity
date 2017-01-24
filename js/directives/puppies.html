@@ -1,0 +1,12 @@
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Breed</th>
+    <th>Adopt?</th>
+  </tr>
+  <tr ng-repeat="puppy in puppies | filter: {name: searchForm.name, breed: { id: searchForm.breedID}}">
+    <td>{{ puppy.name }}</td>
+    <td>{{ puppy.breed.name }}</td>
+    <td><button type="button" class="btn btn-primary" ng-click="destroyPuppy(puppy.id)">Adopt!</button></td>
+  </tr>
+</table>

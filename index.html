@@ -17,9 +17,15 @@
 
       <div class="row">
         <div class="col-xs-12">
-          <select class="form-control">
-            <option ng-repeat="breed in breeds" value="{{breed.id}}">{{ breed.name }}</option>
-          </select>
+          <form name="addPuppyForm" class="form-inline" ng-submit="addPuppy(addPuppyForm)">
+            <label for="name">Name</label>
+            <input type="text" name="name" ng-model="formData.name" class="form-control" required>
+            <label>Breed</label>
+            <select class="form-control" ng-model="formData.breedID" required>
+              <option ng-repeat="breed in breeds" value="{{breed.id}}">{{ breed.name }}</option>
+            </select>
+            <input type="submit" class="btn btn-primary" value="Add Puppy">
+          </form>
         </div>
       </div>
 
@@ -34,18 +40,7 @@
               <option ng-repeat="breed in breeds" value="{{breed.id}}">{{ breed.name }}</option>
             </select>
           </form>
-          <table class="table">
-            <tr>
-              <th>Name</th>
-              <th>Breed</th>
-              <th></th>
-            </tr>
-            <tr ng-repeat="puppy in puppies | filter: {name: searchForm.name, breed: { id: searchForm.breedID}}">
-              <td>{{ puppy.name }}</td>
-              <td>{{ puppy.breed.name }}</td>
-            </tr>
-            </tr>
-          </table>
+          <puppies></puppies>
         </div>
       </div>
 
@@ -57,5 +52,6 @@
   <script src="/js/services/breeds.js"></script>
   <script src="/js/services/puppies.js"></script>
   <script src="/js/controllers/puppies_ctrl.js"></script>
+  <script src="/js/directives/puppies.js"></script>
 
 </html>
