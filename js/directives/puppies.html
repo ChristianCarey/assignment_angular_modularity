@@ -1,10 +1,10 @@
 <table class="table">
   <tr>
-    <th>Name</th>
-    <th>Breed</th>
+    <th ng-click="orderBy('name')">Name{{ arrow('name') }}</th>
+    <th ng-click="orderBy('breed.name')">Breed{{ arrow('breed.name') }}</th>
     <th>Adopt?</th>
   </tr>
-  <tr ng-repeat="puppy in puppies | filter: {name: searchForm.name, breed: { id: searchForm.breedID}}">
+  <tr ng-repeat="puppy in puppies | filter: {name: searchForm.name, breed: { id: searchForm.breedID}} | orderBy: orderOption: reverseOption">
     <td>{{ puppy.name }}</td>
     <td>{{ puppy.breed.name }}</td>
     <td><button type="button" class="btn btn-primary" ng-click="destroyPuppy(puppy.id)">Adopt!</button></td>

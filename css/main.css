@@ -1,0 +1,27 @@
+.breed-select {
+  position: relative;
+}
+
+.breed-list {
+  
+  top: 0;
+  list-style: none;
+  border: 1px solid #999;
+  border-top: 0px;
+  display: block;
+  background: white;
+  padding: 0;
+}
+
+.breed-list li {
+  width: 100%;
+  background: white;
+  display: block;
+  padding: 7px;
+  cursor: pointer;
+}
+
+.breed-list li:hover {
+  background: #337ab7;
+  color: white;
+}

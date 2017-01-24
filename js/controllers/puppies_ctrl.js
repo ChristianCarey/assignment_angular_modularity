@@ -30,6 +30,23 @@ PuppiesAPI.controller('PuppiesCtrl', ['$scope', 'puppies', 'breeds',
       }
 
       puppies.sendPostRequest(data).then(getPuppies); 
+      $scope.formData = {};
+      form.$setPristine();
+    }
+
+    $scope.orderBy = function(orderOption) {
+      if ($scope.orderOption === orderOption) {
+        $scope.reverseOption = !$scope.reverseOption;
+      } else {
+        $scope.reverseOption = false;
+        $scope.orderOption = orderOption;
+      }
+    }
+
+    $scope.arrow = function(orderOption) {
+      if ($scope.orderOption === orderOption) {
+        return $scope.reverseOption ? " \u2191" : " \u2193"
+      }
     }
 
     getPuppies();
